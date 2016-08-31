@@ -1,0 +1,82 @@
+$colors-vmark: (
+        required:       #F2C53D,
+        not-required:   #FAF8F8,
+
+        invalid:        #D82150,
+        valid:          #5FDBCA,
+
+        border:         #C1C1C1
+);
+
+form
+{
+    $input-default-padding: 15px;
+    $input-padding: 40px;
+
+    .vmark
+    {
+        position: absolute;
+        display: none;
+
+        box-sizing: border-box;
+
+        top: 15px;
+        left: 18px;
+
+        border-radius: 10px;
+        z-index: 4;
+
+        &.required
+        {
+            display: block;
+
+            height: 10px;
+            width: 10px;
+
+            border: 0;
+            background: map-get($colors-vmark, 'required');
+        }
+
+        &.optional
+        {
+            display: block;
+
+            width: 11px;
+            height: 11px;
+
+            border: 2px dotted map-get($colors-vmark, 'border');
+            background: map-get($colors-vmark, 'not-required');
+        }
+
+        &.required + input,
+        &.optional + input
+        {
+            padding-left: $input-padding;
+        }
+
+        // Sit on the right top corner
+        &.right
+        {
+            left: auto;
+            right: 18px;
+
+            &.required + input,
+            &.optional + input
+            {
+                padding-left: $input-default-padding;
+            }
+        }
+    }
+
+    .has-success .vmark
+    {
+        background: map-get($colors-vmark, 'valid');
+        border: 0;
+    }
+
+    .has-error .vmark
+    {
+        background: map-get($colors-vmark, 'invalid');
+        border: 0;
+    }
+}

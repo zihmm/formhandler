@@ -1,0 +1,84 @@
+@import "vmark";
+
+form
+{
+    display: block;
+
+    padding: 0;
+    margin: 0;
+
+    width: 50%;
+
+    fieldset
+    {
+        margin: 0;
+        padding: 0;
+        border: 0;
+
+        legend
+        {
+            font-weight: bold;
+        }
+    }
+
+    input,
+    textarea
+    {
+        position: relative;
+        display: block;
+
+        box-sizing: border-box;
+
+        font-size: 1em;
+
+        width: 100%;
+        padding: 10px 20px;
+
+        border-radius: 100px;
+        border: 1px solid #C1C1C1;
+
+        background: white;
+
+        outline: none;
+        resize: none;
+
+        &:focus
+        {
+            border: 1px solid #929292;
+        }
+    }
+
+    // Form row
+    .row
+    {
+        position: relative;
+        display: block;
+
+        margin-bottom: 12px;
+
+        &.has-error
+        {
+            input
+            {
+                border: 1px solid #D82150 !important;
+            }
+
+            .form-error
+            {
+                display: block;
+                font-size: .9em;
+                color:  #D82150;
+                padding: 12px 12px 0;
+            }
+        }
+    }
+
+    // Hide validation messages (like the classname says...)
+    &.hide-validation-messages .row
+    {
+        &.has-error .form-error
+        {
+            display: none;
+        }
+    }
+}

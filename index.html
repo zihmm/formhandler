@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+        <link rel="stylesheet" href="form.css">
+
+        <style type="text/css">
+            /**
+             * Just page styling. Ignore this.
+             */
+            body
+            {
+                font-family: 'Slabo 27px', serif;
+                padding: 20px;
+            }
+
+            button
+            {
+                color: white;
+                cursor: pointer;
+
+                padding: 10px 20px;
+
+                background: #D82150;
+                border: 0;
+                border-radius: 40px;
+
+                outline: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>FormHandler</h1>
+        <form method="POST" action="handler.php" novalidate class="hide-validation-messages">
+            <fieldset>
+                <div class="row">
+                    <i class="vmark required"></i>
+                    <input placeholder="Name" type="text" name="name" data-validation="required">
+                </div>
+                <div class="row">
+                    <i class="vmark required"></i>
+                    <input placeholder="Street / Nr." type="text" name="street" data-validation="required">
+                </div>
+                <div class="row">
+                    <i class="vmark optional"></i>
+                    <input placeholder="Postcode" type="text" name="postcode" data-validation="alphanumeric" data-validation-optional="true">
+                </div>
+            </fieldset>
+            <button type="submit">Go!</button>
+        </form>
+
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+        <script src="formhelper.js"></script>
+
+        <script>
+            var fh = $('form').formHandler({
+                successMessage:         'Yay ;) Awesome submitting hero.',
+                hideValidationMessages: true
+            });
+
+            fh.done(function(response)
+            {
+                console.log(response);
+            });
+        </script>
+    </body>
+</html>
