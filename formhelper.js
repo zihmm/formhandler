@@ -68,11 +68,6 @@
             }.bind(this));
         },
 
-        thanks: function()
-        {
-
-        },
-
         isValid: function()
         {
             var d       = jQuery.Deferred(),
@@ -81,11 +76,6 @@
             (isValid) ? d.resolve(this.getFormdate()) : d.reject();
 
             return d.promise();
-        },
-
-        getSubmitButton: function(className)
-        {
-            return this.$element.find('button[type="submit"].ting');
         },
 
         getFormdate: function()
