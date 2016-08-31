@@ -40,7 +40,7 @@
     </head>
     <body>
         <h1>FormHandler</h1>
-        <form method="POST" action="handler.php" novalidate class="hide-validation-messages">
+        <form method="POST" action="handler.php" novalidate>
             <fieldset>
                 <div class="row">
                     <i class="vmark required"></i>
@@ -66,7 +66,7 @@
         <script>
             var fh = $('form').formHandler({
                 successMessage:         'Yay ;) Awesome submitting hero.',
-                hideValidationMessages: true
+                hideValidationMessages: false
             });
 
             fh.done(function(response)

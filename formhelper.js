@@ -102,7 +102,6 @@
         _addEvents: function()
         {
             this.$element.find('button[type="submit"]').on('click', jQuery.proxy(this.send, this));
-
             jQuery.validate({ form: this.$element });
         }
     };
