@@ -56,10 +56,15 @@
                         data: formdata
                     });
 
-                    jQuery.ajax(ajaxOptions).done(function(response)
-                    {
-                        this.response.resolve(jQuery.parseJSON(response));
-                    }.bind(this));
+                    jQuery.ajax(ajaxOptions)
+                        .done(function(response)
+                        {
+                            this.response.resolve(jQuery.parseJSON(response.responseText));
+                        }.bind(this))
+                        .fail(function(response)
+                        {
+                            this.response.reject(jQuery.parseJSON(response.responseText));
+                        }.bind(this));
                 }
                 else
                 {
