@@ -5,7 +5,6 @@
             loadingIndicator:       false,
             hideValidationMessages: false,
             actionUrl:              '',
-
             useAjax:                true,
             ajaxOptions:            {}
         };
@@ -17,8 +16,6 @@
         this.response   = jQuery.Deferred();
 
         this.init()
-
-        return this.response.promise();
     }
 
     // Class
@@ -41,9 +38,9 @@
             }
         },
 
-        send: function(ev)
+        send: function()
         {
-            ev.preventDefault();
+            var q = jQuery.Deferred();
 
             this.isValid().then(function(formdata)
             {
@@ -59,11 +56,11 @@
                     jQuery.ajax(ajaxOptions)
                         .done(function(response)
                         {
-                            this.response.resolve(jQuery.parseJSON(response.responseText));
+                            q.resolve(response);
                         }.bind(this))
                         .fail(function(response)
                         {
-                            this.response.reject(jQuery.parseJSON(response.responseText));
+                            q.reject(jQuery.parseJSON(response.responseText));
                         }.bind(this));
                 }
                 else
@@ -71,6 +68,8 @@
                     this.$element.submit();
                 }
             }.bind(this));
+
+            return q.promise();
         },
 
         isValid: function()
@@ -104,9 +103,13 @@
             return formdata;
         },
 
+        getSubmitButton: function()
+        {
+            return this.$element.find('button[type="submit"]');
+        },
+
         _addEvents: function()
         {
-            this.$element.find('button[type="submit"]').on('click', jQuery.proxy(this.send, this));
             jQuery.validate({ form: this.$element });
         }
     };
